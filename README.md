@@ -1,8 +1,12 @@
 # local_json_app
 Flutter 2
 
-A Flutter Application that loads a local JSON file that contains the different currencies around the world with their code and display them on the screen, using DefaultAssetBundle with the help of dart:convert library.
+A **Flutter** Application that loads a local JSON file that contains the different currencies around the world with their code and display them on the screen, using **DefaultAssetBundle** with the help of **dart:convert** library.
 
+
+You can wathc the episodeon **Youtube** : https://youtu.be/fcwVwWZZ-sY
+
+![thumJSON](https://user-images.githubusercontent.com/36349126/185460454-56130369-7f03-4ed4-8aac-3e7d36abd03d.png)
 
 ![p](https://user-images.githubusercontent.com/36349126/113357393-3b7c6780-9344-11eb-8959-c752d76aad08.png)
 

@@ -1,49 +1,43 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
-class jsonPage extends StatefulWidget {
-  @override
-  _jsonPageState createState() => _jsonPageState();
-}
-
-class _jsonPageState extends State<jsonPage> {
+class jsonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(title: Text('JSON Example'),),
-      body: FutureBuilder(
-        future: DefaultAssetBundle.of(context).loadString("assets/currency.json"),
+      body:FutureBuilder(
+        future: DefaultAssetBundle.of(context).loadString('assets/currency.json') ,
         builder: (context, snapshot){
-          if(snapshot.hasError)
-            {
-              return Center(child :Text("Something went wrong"));
-            }
-          else if(snapshot.hasData){
-            var showData= json.decode(snapshot.data.toString());
-            return ListView.builder(
-                itemCount: showData.length,
-                itemBuilder: (context, index){
-                  return ListTile(
-                    title: Text(showData[index]["name"]),
-                    subtitle: Text(showData[index]["code"]),
-                    leading: CircleAvatar(
-                      // radius: 50,
-
-                      backgroundColor: Colors.deepOrange,
-                      child: Icon(Icons.attach_money),
-
-                    ),
-                  );
-                });
-          }
-          else {
-            return Center(child: CircularProgressIndicator(),);
-          }
+             if(snapshot.hasError)
+               {
+                 return Center(
+                   child: Text('Something went wrong'),
+                 );
+               }
+             if(snapshot.hasData)
+               {  var showData = json.decode(snapshot.data);
+                 return ListView.builder(
+                     itemCount:showData.length ,
+                     itemBuilder: (context, index){
+                       return buildTile(showData[index]);
+                     });
+               }
+             else {
+               return Center( child: CircularProgressIndicator(),);
+             }
         },
-
+      )
+    );
+  }
+  buildTile(Map<String, dynamic> obj){
+    return ListTile(
+      title: Text('${obj['name']}'),
+      subtitle: Text('${obj['code']}'),
+      leading: CircleAvatar(
+        backgroundColor: Colors.indigo[400],
+        child: Icon(Icons.money),
       ),
     );
   }
